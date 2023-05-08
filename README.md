@@ -31,13 +31,15 @@ visualization tool:
 
 ```bash
 # quick and dirty check
-mosaic.py --check examples/pc-cv.py | grep stdout | tail -n 1
+python3 mosaic.py --check examples/hello.py | grep stdout | sort | uniq
 ```
 
 ```bash
-# visualization
-mosaic.py --check pc-cv.py | python3 -m vis
+# interactive state explorer
+python3 mosaic.py --check examples/hello.py | python3 -m vis
 ```
+
+![](vis/demo.png)
 
 ## Modeled System Calls
 

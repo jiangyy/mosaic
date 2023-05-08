@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{title}}</title>
+<style>
+.widget-tab-contents pre { font-family: 'Fira Code', monospace; }
+.widget-tab-contents pre { line-height: 125%; font-size: 65%; }
+.widget-tab-contents td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+.widget-tab-contents span.linenos { -webkit-user-select: none; user-select: none; color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+.widget-tab-contents td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.widget-tab-contents span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.widget-tab-contents .hll { background-color: #ffffcc }
+.widget-tab-contents { background: #f8f8f8; }
+.widget-tab-contents .c { color: #3D7B7B; font-style: italic } /* Comment */
+.widget-tab-contents .err { border: 1px solid #FF0000 } /* Error */
+.widget-tab-contents .k { color: #008000; font-weight: bold } /* Keyword */
+.widget-tab-contents .o { color: #666666 } /* Operator */
+.widget-tab-contents .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.widget-tab-contents .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.widget-tab-contents .cp { color: #9C6500 } /* Comment.Preproc */
+.widget-tab-contents .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.widget-tab-contents .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.widget-tab-contents .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.widget-tab-contents .gd { color: #A00000 } /* Generic.Deleted */
+.widget-tab-contents .ge { font-style: italic } /* Generic.Emph */
+.widget-tab-contents .gr { color: #E40000 } /* Generic.Error */
+.widget-tab-contents .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.widget-tab-contents .gi { color: #008400 } /* Generic.Inserted */
+.widget-tab-contents .go { color: #717171 } /* Generic.Output */
+.widget-tab-contents .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.widget-tab-contents .gs { font-weight: bold } /* Generic.Strong */
+.widget-tab-contents .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.widget-tab-contents .gt { color: #0044DD } /* Generic.Traceback */
+.widget-tab-contents .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.widget-tab-contents .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.widget-tab-contents .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.widget-tab-contents .kp { color: #008000 } /* Keyword.Pseudo */
+.widget-tab-contents .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.widget-tab-contents .kt { color: #B00040 } /* Keyword.Type */
+.widget-tab-contents .m { color: #666666 } /* Literal.Number */
+.widget-tab-contents .s { color: #BA2121 } /* Literal.String */
+.widget-tab-contents .na { color: #687822 } /* Name.Attribute */
+.widget-tab-contents .nb { color: #008000 } /* Name.Builtin */
+.widget-tab-contents .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.widget-tab-contents .no { color: #880000 } /* Name.Constant */
+.widget-tab-contents .nd { color: #AA22FF } /* Name.Decorator */
+.widget-tab-contents .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.widget-tab-contents .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.widget-tab-contents .nf { color: #0000FF } /* Name.Function */
+.widget-tab-contents .nl { color: #767600 } /* Name.Label */
+.widget-tab-contents .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.widget-tab-contents .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.widget-tab-contents .nv { color: #19177C } /* Name.Variable */
+.widget-tab-contents .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.widget-tab-contents .w { color: #bbbbbb } /* Text.Whitespace */
+.widget-tab-contents .mb { color: #666666 } /* Literal.Number.Bin */
+.widget-tab-contents .mf { color: #666666 } /* Literal.Number.Float */
+.widget-tab-contents .mh { color: #666666 } /* Literal.Number.Hex */
+.widget-tab-contents .mi { color: #666666 } /* Literal.Number.Integer */
+.widget-tab-contents .mo { color: #666666 } /* Literal.Number.Oct */
+.widget-tab-contents .sa { color: #BA2121 } /* Literal.String.Affix */
+.widget-tab-contents .sb { color: #BA2121 } /* Literal.String.Backtick */
+.widget-tab-contents .sc { color: #BA2121 } /* Literal.String.Char */
+.widget-tab-contents .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.widget-tab-contents .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.widget-tab-contents .s2 { color: #BA2121 } /* Literal.String.Double */
+.widget-tab-contents .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.widget-tab-contents .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.widget-tab-contents .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.widget-tab-contents .sx { color: #008000 } /* Literal.String.Other */
+.widget-tab-contents .sr { color: #A45A77 } /* Literal.String.Regex */
+.widget-tab-contents .s1 { color: #BA2121 } /* Literal.String.Single */
+.widget-tab-contents .ss { color: #19177C } /* Literal.String.Symbol */
+.widget-tab-contents .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.widget-tab-contents .fm { color: #0000FF } /* Name.Function.Magic */
+.widget-tab-contents .vc { color: #19177C } /* Name.Variable.Class */
+.widget-tab-contents .vg { color: #19177C } /* Name.Variable.Global */
+.widget-tab-contents .vi { color: #19177C } /* Name.Variable.Instance */
+.widget-tab-contents .vm { color: #19177C } /* Name.Variable.Magic */
+.widget-tab-contents .il { color: #666666 } /* Literal.Number.Integer.Long */
+.widget-tab-contents .linenos {
+    color: #ddd;
+    font-size: 80%;
+    margin-right: 8px;
+}
+.widget-tab-contents td {
+    text-align: left;
+}
+.widget-tab-contents span:hover {
+    background: #eee;
+}
+.widget-tab-contents {
+    zoom: 1.0;
+}
+
+</style>
+</head>
+
+<body>
+
+<script src="https://unpkg.com/gojs/release/go-debug.js"></script>
+<script src="https://www.unpkg.com/jquery@3.6.4/dist/jquery.min.js"></script>
+<script>
+function debug(message) {
+    $('#debug').html(message);
+}
+
+function debug_obj(obj) {
+    $('#debug').html(JSON.stringify(obj));
+}
+
+function visualize(divname, MODEL) {
+    var $$ = go.GraphObject.make;
+    var diagram =
+        $$(go.Diagram, divname,  // must name or refer to the DIV HTML element
+            {
+                initialContentAlignment: go.Spot.Center,
+                layout: $$(go.ForceDirectedLayout),
+                // moving and copying nodes also moves and copies their subtrees
+                "commandHandler.copiesTree": true,  // for the copy command
+                "commandHandler.deletesTree": true, // for the delete command
+                "draggingTool.dragsTree": true,
+                "diagram.maxSelectionCount": 1,
+                "undoManager.isEnabled": false
+            });
+
+    var V = {};
+    for (let i in MODEL.vertices) {
+        var v = MODEL.vertices[i];
+        V[v.hashcode] = v;
+        v.created = false;
+    }
+
+    var init_state = MODEL.vertices[0];
+    init_state.contexts[init_state.current] = -1;
+
+    function clear_hl() {
+        for (let i = 1; i <= 100; i++) {
+            $(`#${divname}-container`).find("#True-" + i).attr('style', '');
+        }
+    }
+
+    function hl(line, color) {
+        $(`#${divname}-container`).find("#True-" + line).attr('style', 'background-color:' + color);
+    }
+
+    function update_selection() {
+        clear_hl();
+        var sel = diagram.selection.first();
+        if (sel !== null) {
+            var data = sel.data;
+            if (data.key) {
+                hl(data.pc, '#61eb76');
+            } else {
+                var st = V[data.from];
+                var ed = V[data.to];
+                if (st.contexts[st.current]) {
+                    hl(st.contexts[st.current].pc, '#f59898');
+                }
+                if (ed.contexts[ed.current]) {
+                    hl(ed.contexts[ed.current].pc, '#61eb76');
+                }
+            }
+        }
+    }
+
+    function expandNode(node) {
+        diagram.startTransaction("CollapseExpandTree");
+        var data = node.data;
+        if (!data.everExpanded) {
+            diagram.model.setDataProperty(data, "everExpanded", true);
+            var numchildren = createSubTree(data);
+            if (numchildren === 0) {
+                node.findObject('TREEBUTTON').visible = false;
+            }
+        }
+        if (node.isTreeExpanded) {
+            diagram.commandHandler.collapseTree(node);
+        } else {
+            diagram.commandHandler.expandTree(node);
+        }
+        diagram.commitTransaction("CollapseExpandTree");
+    }
+
+    function parseLink(linkdata) {
+        var st = linkdata.from;
+        var ed = linkdata.to;
+        var label = linkdata.label;
+
+        linkdata.content = "";
+
+        if (V[st].current != V[ed].current) {
+            const c1 = V[st].contexts[V[st].current];
+            const c2 = V[ed].contexts[V[ed].current];
+            if (c2) {
+                const pid = V[ed].current + 1001;
+                if (!c1) {
+                    const p1 = V[st].current + 1001;
+                    label = `switch to ${pid} (${c2.name})`;
+                    linkdata.content = `${p1} exit`;
+                } else {
+                    if (c1.heap != c2.heap) {
+                        label = `switch to ${pid} (${c2.name})`;
+                    } else {
+                        label = `switch to ${c2.name}`;
+                    }
+                }
+            }
+        } else if (label.match(/^t[0-9]+$/)) {
+            label = V[st].contexts[V[st].current].name;
+        }
+        if (label == "write") {
+            linkdata.content = V[ed].stdout.substring(V[st].stdout.length);
+        }
+        linkdata.label = label;
+    }
+
+    function addInitNode(model, nodedata) {
+        const key = nodedata.key;
+        V[key].created = true;
+        nodedata.isGroup = true;
+        model.addNodeData(nodedata);
+    }
+
+    function var_list(d) {
+        const ret = [];
+        for (let k in d) {
+            ret.push(`${k} = ${d[k]}`);
+        }
+        ret.sort();
+        if (ret.length == 0) {
+            ret.push('');
+        }
+        return ret;
+    }
+
+    function addNode(model, nodedata) {
+        const key = nodedata.key;
+        var v = V[key];
+        if (v.created) {
+            return;
+        }
+        v.created = true;
+        nodedata.current = v.current;
+        nodedata.isGroup = true;
+
+        var pc = null;
+        if (v.contexts[v.current] && v.contexts[v.current].pc) {
+            pc = (1001 + v.current) + " " + v.contexts[v.current].pc;
+            nodedata.pc = v.contexts[v.current].pc;
+        }
+        if (!pc) {
+            var pc = '(pc)'
+        }
+
+        ret = [nodedata]
+
+        for (let i in v.contexts) {
+            var c = v.contexts[i];
+            if (c) {
+                if (i == v.current) {
+                    category = 'thread_active';
+                } else {
+                    category = 'thread';
+                }
+                const pid = 1001 + parseInt(i);
+                ret.push(
+                    { key: `${key}-context-${i}`, items: var_list(c.locals), group: key, pc: c.pc, pid: `${c.name} (${pid})`, category: category }
+                )
+            }
+        }
+
+        const hs = {};
+
+        for (let h in v.heaps) {
+            var heap = v.heaps[h];
+            hs[h] = { key: `${key}-heap-${h}`, items: var_list(heap), group: key, category: 'list' };
+        }
+
+        for (let i in v.contexts) {
+            var c = v.contexts[i];
+            if (c) {
+                link = {
+                    from: `${key}-context-${i}`,
+                    to: `${key}-heap-${c.heap}`,
+                    category: 'short'
+                };
+                model.addLinkData(link);
+
+                if (hs[c.heap]) {
+                    ret.push(hs[c.heap]);
+                    hs[c.heap] = undefined;
+                }
+            }
+        }
+
+        for (let n of ret) {
+            model.addNodeData(n);
+        }
+
+        if (v.stdout.length > 0) {
+            model.addNodeData({ key: 'scratch', text: v.stdout.trim(), group: key });
+        }
+    }
+
+    function createSubTree(parentdata) {
+        var model = diagram.model;
+        var parent = diagram.findNodeForData(parentdata);
+        var children = [];
+
+        for (let i in MODEL.edges) {
+            var st = MODEL.edges[i][0];
+            var ed = MODEL.edges[i][1];
+            var label = MODEL.edges[i][2];
+            if (st == parentdata.key) {
+                children.push({ key: st, ed: ed, label: label });
+            }
+        }
+
+        for (var i = 0; i < children.length; i++) {
+            var key = children[i].ed;
+            var childdata = {
+                key: key,
+                parent: parentdata.key
+            };
+            addNode(model, childdata);
+
+            var linkdata = {
+                from: parentdata.key,
+                to: children[i].ed,
+                label: children[i].label
+            };
+            parseLink(linkdata);
+            model.addLinkData(linkdata);
+
+            // position the new child node close to the parent
+            var child = diagram.findNodeForKey(key);
+            child.location = parent.location;
+        }
+
+        return children.length
+    }
+
+    const defaultNode = $$(go.Node, "Auto",
+        $$(go.Shape, "Rectangle", { fill: "white" }),
+        $$(go.TextBlock,
+            {
+                font: "12px Monospace",
+                stroke: "gray",
+                margin: 2
+            },
+            new go.Binding("text", "text"))
+    );
+
+    const itemNode = $$(go.Node, "Auto",
+        $$(go.Shape, "Rectangle", { fill: "white" }),
+        $$(go.Panel, "Vertical",
+            {
+                alignment: go.Spot.TopLeft,
+                defaultAlignment: go.Spot.Left,
+                stretch: go.GraphObject.Horizontal
+            },
+            new go.Binding("itemArray", "items"))
+    );
+
+    const leftAlign = {
+        alignment: go.Spot.TopLeft,
+        defaultAlignment: go.Spot.Left,
+        stretch: go.GraphObject.Horizontal
+    };
+
+    const threadNode = $$(go.Node, "Auto",
+        $$(go.Panel, "Vertical",
+            $$(go.Panel, "Auto",
+                leftAlign,
+                $$(go.TextBlock,
+                    {
+                        font: "10px Monospace"
+                    },
+                    new go.Binding("text", "pid")
+                )
+            ),
+            $$(go.Panel, "Auto",
+                leftAlign,
+                $$(go.Shape, "Rectangle", { fill: "white" }),
+                $$(go.Panel, "Vertical",
+                    {
+                        alignment: go.Spot.TopLeft,
+                        defaultAlignment: go.Spot.Left,
+                        stretch: go.GraphObject.Horizontal
+                    },
+                    new go.Binding("itemArray", "items"))
+            )
+        )
+    );
+
+    const threadActiveNode = $$(go.Node, "Auto",
+        $$(go.Panel, "Vertical",
+            $$(go.Panel, "Auto",
+                leftAlign,
+                $$(go.TextBlock,
+                    {
+                        font: "10px Monospace"
+                    },
+                    new go.Binding("text", "pid")
+                )
+            ),
+            $$(go.Panel, "Auto",
+                leftAlign,
+                $$(go.Shape, "Rectangle", { fill: "white", strokeWidth: 2  }),
+                $$(go.Panel, "Vertical",
+                    {
+                        alignment: go.Spot.TopLeft,
+                        defaultAlignment: go.Spot.Left,
+                        stretch: go.GraphObject.Horizontal
+                    },
+                    new go.Binding("itemArray", "items"))
+            )
+        )
+    );
+
+    const nodetmpl = new go.Map();
+    nodetmpl.add('list', itemNode);
+    nodetmpl.add('thread', threadNode);
+    nodetmpl.add('thread_active', threadActiveNode);
+    nodetmpl.add('', defaultNode);
+    diagram.nodeTemplateMap = nodetmpl;
+
+    diagram.groupTemplate =
+        $$(go.Group, "Spot",
+            {
+                isTreeExpanded: false,
+                layout: $$(go.LayeredDigraphLayout,
+                    { direction: 0, columnSpacing: 5, layerSpacing: 5 }),
+                isTreeLeaf: false
+            },
+            $$(go.Panel, "Auto",
+                $$(go.Shape, "RoundedRectangle",
+                    {
+                        parameter1: 14,
+                        fill: "#ddd"
+                    }),
+                $$(go.Placeholder, { padding: 4 })
+            ),
+            $$("TreeExpanderButton",
+                {
+                    name: 'TREEBUTTON',
+                    width: 12, height: 12,
+                    alignment: go.Spot.TopRight,
+                    alignmentFocus: go.Spot.Center,
+                    click: (e, obj) => {  // OBJ is the Button
+                        var node = obj.part;  // get the Node containing this Button
+                        if (node === null) return;
+                        e.handled = true;
+                        expandNode(node);
+                    }
+                }
+            )
+        );
+
+    const defaultLink = $$(go.Link, {
+        routing: go.Link.Normal,
+        curve: go.Link.Bezier,
+        toShortLength: 2
+    },
+        $$(go.Shape),
+        $$(go.Shape, { toArrow: "Standard" }),
+        $$(go.TextBlock, new go.Binding("text", "label"),
+            {
+                segmentOffset: new go.Point(0, -10),
+                segmentOrientation: go.Link.OrientUpright
+            }),
+        $$(go.TextBlock,
+            { font: "12px Monospace" },
+            new go.Binding("text", "content"),
+            {
+                segmentOffset: new go.Point(0, 17),
+                segmentOrientation: go.Link.OrientUpright
+            })
+    );
+
+    const shortLink = $$(go.Link, {}, $$(go.Shape));
+
+    const templmap = new go.Map();
+    templmap.add('short', shortLink);
+    templmap.add('', defaultLink);
+    diagram.linkTemplateMap = templmap;
+
+    // create the model with a root node data
+    initdata = {
+        key: init_state.hashcode,
+        everExpanded: false
+    };
+
+    diagram.model = new go.GraphLinksModel([]);
+    addInitNode(diagram.model, initdata);
+
+    diagram.addDiagramListener("ChangedSelection", () => update_selection());
+}
+</script>
+
+<div class="widget-tab-contents" id="diagramDivName-container">
+    <div id="diagramDivName" style="width:70%; height:400px; float:left; background-color: #eee"></div>
+    <div id="code" style="width:30%; height:400px; overflow: scroll; float:left">{{hl}}</div>
+</div>
+
+<script>
+visualize('diagramDivName', {{model}});
+</script>
+
+</body>
+</html>
